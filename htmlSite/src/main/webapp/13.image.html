@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta charset="UTF-8" />	
+	<title>image 요소 연습</title>
+</head>
+<!-- 
+	img : 이미지태그
+	  - src속성 : image uri
+ -->
+<body>
+	<h2>절대경로[http://~ 로시작하는경로]</h2><hr>
+	<h4>다른 싸이트에있는 이미지</h4>
+	<div>
+		<img width="80" height="80" src="https://thumbnail8.coupangcdn.com/thumbnails/remote/230x230ex/image/retail/images/2021/10/20/16/9/a3e5e51f-efca-4dc3-8ad3-1d0344648ecd.jpeg">
+		<img width="80" height="80" src="https://thumbnail6.coupangcdn.com/thumbnails/remote/230x230ex/image/retail/images/218005008681-0735e1ea-25ea-4d80-b172-74d4cfee0812.jpg">
+		<img width="80" height="80" src="https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/retail/images/1137462732232-481ff370-019a-45d4-9c76-8fc48afd0099.jpg">
+		<img width="80" height="80" src="https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/retail/images/7093037451552247-2a67e10a-1d1c-43fa-b170-36000eebcd6f.jpg">
+
+	</div>
+	<h4>같은 싸이트에있는 이미지</h4>
+	<div>
+		<img src="http://localhost/htmlSite/penguin1.gif">
+		<img src="http://localhost/htmlSite/penguin2.gif">
+		<img src="http://localhost/htmlSite/penguin3.gif">
+		<br>
+		<img src="http://localhost/htmlSite/image/car1.jpg" width="80px" height="80px">
+		<img src="http://localhost/htmlSite/image/car2.jpg" width="80" height="80">
+		<img src="http://localhost/htmlSite/image/car3.jpg" width="80" height="80">
+		<img src="http://localhost/htmlSite/image/car4.jpg" width="80" height="80">
+		<img src="http://localhost/htmlSite/image/car5.jpg" width="80" height="80">
+		<img src="http://localhost/htmlSite/image/car6.jpg" width="80" height="80">
+	</div>
+	<hr>
+	<h2>상대경로[http://~ 로시작하지않는경로]</h2><hr>
+	<h4>같은 싸이트에있는 이미지-->기준경로 [http://localhost/htmlSite/]</h4>
+	<div>
+		<img src="penguin1.gif">
+		<img src="penguin2.gif">
+		<img src="penguin3.gif">
+		<br>
+		<img src="image/car1.jpg" width="80px" height="80px">
+		<img src="image/car2.jpg" width="80" height="80">
+		<img src="image/car3.jpg" width="80" height="80">
+		<img src="image/car4.jpg" width="80" height="80">
+		<img src="image/car5.jpg" width="80" height="80">
+		<img src="image/car6.jpg" width="80" height="80">
+	</div>
+	<h3>image에 링크(a tag)걸기</h3><br>
+	<div>
+		<a href='http://www.daum.net'><img src='image/daumlogo.png' width="80" height="80"></a>	
+		<a href='http://www.google.co.kr'><img src='image/googlelogo.png' width="80" height="80"></a>	
+		
+		</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

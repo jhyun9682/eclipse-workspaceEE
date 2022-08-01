@@ -1,0 +1,48 @@
+.bookcategory {
+	border: 1px solid black;
+}
+
+.book-list {
+	background-color: #f4f4f4;
+}
+
+.book-list-img {
+	text-align: center;
+	width: 160px;
+}
+
+.book-td {
+	text-align: left;
+}
+
+.book-detail {
+	width: 90%;
+}
+
+
+.book-detail-img {
+	text-align: center;
+	width: 100%;
+	margin: auto;
+}
+
+.book-detail-button {
+	text-align: center;
+	width: 100%;
+	margin: auto;
+}
+
+.book-detail-info-index{
+	text-align:left;	
+}
+
+.btn-action {
+	background-color: #63c76a;
+	color: white;
+}
+
+.favorite {
+	background-color: #2da3e5;
+	color: white;
+}
+

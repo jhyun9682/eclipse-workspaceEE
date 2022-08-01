@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	/*
+	 함수정의
+	   - 윈도객체에소속된 함수가된다.
+	 */
+	function head_function() {
+		window.document.write("head_function()<br>");
+	}
+	var name = 'global 이순신';
+	var msg = 'global 저는 아직도 3척이나있습니다.';
+
+	function hello1() {
+		/*
+		local변수는 function block에의해서만 범위(scope)가설정
+		*/
+		var name = 'local GUEST1';
+		var msg = 'local 3척밖에 없어요!!!';
+		document.write(name + " 님" + msg + "[hello1()]<br>");
+		document.write(window.name + " 님" + window.msg + "[hello1()]<br>");
+		return;
+	}
+	/********function argument*************/
+	function hello2(msg){
+		/*
+		메쏘드 파라메타변수 선언시 var 키워드사용안함
+		*/
+		var name="local GUEST2";
+		document.write(name+" 님"+msg+"[hello2(msg)]<br>");
+	}
+	function hello3(name,msg){
+		document.write(name+" 님 "+msg+"[hello3(name,msg)]<br>")
+	}
+	function hello4(name,msg,count){
+		for(var i=0;i<count;i++){
+			
+			document.write(name+" 님 "+msg+"[hello4(name,msg,count)]<br>");
+		}
+		document.write("for block 밖에서 i="+i+"<br>");
+	}
+	/****function return*************/
+	function add(a,b){
+		var r=a+b;
+		return r;
+	}
+	function sub(a,b){
+		return a-b;
+	}
+	function mul(a,b){
+		return a*b;
+	}
+
+	function div(a,b){
+		return a%b;
+	}
+	function div(a,b){
+		return a/b;
+	}
+	
+	function alert(msg){
+		document.write("<i>내가만든경고함수(window.alert(msg)함수를 대체해버림):"+msg+"</i><br>");
+	}
+	
+</script>
+
+</head>
+<body>
+	<h1>자바스크립트함수</h1>
+	<hr>
+	<div>함수기반언어이다</div>
+	<script type="text/javascript">
+		//함수호출-->함수정의된후 호출되어야한다.
+		head_function();
+		window.head_function();
+		window.hello1();
+		/*
+		Uncaught ReferenceError: body_end_function is not defined
+		*/
+		//body_end_function();
+		hello2("뭐하세요!!");
+		hello2("안녕하세요!!!");
+		hello3("이효리","안녕하세요!!");
+		hello3("이상순","카페잘되요!!");
+		hello4("김수미","간장게장맛있어요",5);
+		window.hello4("홍진경","인수분해해봤어요",3);
+		var result=add(1,2);
+		document.write("add:"+result+"<br>");
+		result=sub(1,2);
+		document.write("sub:"+result+"<br>");
+		result=mul(1,2);
+		document.write("mul:"+result+"<br>");
+		result=div(1,2);
+		document.write("div:"+result+"<br>");
+		window.alert("메세지");
+	</script>
+
+	<script type="text/javascript">
+		function body_end_function(){
+			document.write("body function()<br>");
+		}
+		body_end_function();
+	</script>
+</body>
+</html>

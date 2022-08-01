@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+</head>
+<body >
+	<h1>회원가입폼의 유효성체크[BOM]</h1><hr>
+	<xmp>
+	1.HTML서버로부터수신
+	2.<!DOCTYPE html> HTML5 parsing작업(head-->body)
+	3.DOM Tree생성
+	4.렌더링
+	</xmp>
+	<h3 style="width:400px;text-align: center">회원가입</h3>
+	<form 	id="joinFrm" 
+			name="joinFrm" 
+			action="" 
+			method="post" 
+			style="border: 1px solid blue;width:400px;padding: 30px" >
+		아이디&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input id="id" type="text" name="id" value=""><br>
+		패쓰워드&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input id="password" type="password" name="password"><br>
+		패쓰워드확인
+		<input  id="repassword" type="password" name="repassword"><br>
+		이름&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input id="name" type="text" name="name"><br>
+		주소&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input id="address" type="text" name="address"><br><br>
+		<input type="submit" value="가입[submit button]" >
+		<input type="image" src="bbs_write.gif" >
+	</form>
+	<br/>
+	<div>
+	<input  type="button" value="가입[button]" onclick="join_form_button();" >
+	<a href="">가입</a>
+	<a href=""><img src='bbs_write.gif'></a>
+	</div>
+</body>
+</html>
+
+
+
+
+

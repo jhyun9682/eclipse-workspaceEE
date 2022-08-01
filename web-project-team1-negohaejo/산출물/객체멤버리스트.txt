@@ -1,0 +1,9 @@
+user 그대로
+cart:product, user
+purchase : purchase_item list추가
+purchase item:product 추가
+product: review list
+for(cart: cartlist){
+<%=cart 한줄%>
+int i+=cart.getproduct.gerprice*cart.get.cartqty
+}

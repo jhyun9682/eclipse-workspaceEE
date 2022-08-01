@@ -1,0 +1,13 @@
+<%@page import="com.itwill.shop.dto.User"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+		//로그인 체크
+
+	String s_u_id=(String)session.getAttribute("s_u_id");
+	User sUser=(User)session.getAttribute("s_u_id");
+	if(s_u_id==null){
+		response.sendRedirect("main.jsp");
+		return;
+	}
+%>  

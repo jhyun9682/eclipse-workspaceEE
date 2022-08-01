@@ -1,0 +1,3 @@
+Hello text[static resouce1]!!!!
+Hello text[static resouce2]!!!!
+Hello text[static resouce3]!!!!

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+function join_form_validation_button(){
+	//validation
+	alert('button click');
+	
+	if(join_form_validation_submit_button()){
+	document.joinForm.method='post';
+	document.joinForm.action='join_action.jsp';
+	document.joinForm.submit();
+	return;
+	}
+	function onload_id_focus(){
+		document.joinForm.id.focus();
+	}
+	function join_form_validation_submit_button(){
+		/*
+		DOM Tree에있는 form 객체에 접근하는방법
+		1.window.document.form태그의 name속성값
+		ex> window.document.joinForm
+		2.window.document.forms[0] (form배열객체[index])
+		form 객체안에있는 input엘레멘트객체접근방법
+		ex> window.document.forms[0]
+		1.form객체.input 태그의 이름
+		ex>window.document.
+		*/
+		var idStr=document.joinForm.id.value;
+		if(idStr==null || idStr==''){
+			alert('아이디를 입력하세요');
+			document.joinForm.id.focus();
+			return false;
+		}
+		var passStr = document.joinForm.password.value;
+		if(passStr==null || passStr==''){
+			alert('패스워드를 입력하세요');
+			document.joinForm.password.focus();
+			return false;
+		}
+		var repasswordStr = document.joinForm.repassword.value;
+		if(repasswordStr==null || repasswordStr==''){
+			alert('패스워드확인을 입력하세요');
+			document.joinForm.repassword.focus();
+			return false;
+		}
+		var nameStr= document.joinForm.name.value;
+		if(nameStr==null || nameStr==''){
+			alert('이름을 입력하세요');
+			document.joinForm.namefocus();
+			return false;
+		}
+		var addressStr= document.joinForm.address.value;
+		if(addressStr==null || addressStr==''){
+			alert('주소를 입력하세요');
+			document.joinForm.address.focus();
+			return false;
+		}
+		if(passStr!=repasswordStr){
+			//그냥 비교 equals 안써도 됨
+			alert("패스워드와 패스워드 확인은 일치하여야합니다.");
+			window.document.joinForm.password.focus();
+			window.document.joinForm.password.select();
+			return false;
+		}
+		/*
+		1.아이디는 5~10자여야한다
+		2.영문알파뱃대문자,소문자,숫자만 가능
+		3.숫자로 시작할수 없다.
+		*/
+		if(!(idStr.length>=5 && idStr.length<=10)){
+			alert("아이디는 5~10자여야 합니다.");
+			document.jointForm.id.select();
+			return false;
+		}
+		var firstLetter=idStr.charAt(0);
+		if((firstLetter>='0' && firstLetter<='9')||
+		!((firstLetter>='a' && firstLetter<='z') ||
+				(firstLetter>='A' && firstLetter<='Z')
+				))
+				{
+			alert('아이디 첫글자는영문알파뱃대문자,소문자만 가능합니다.');
+			document.joinForm.id.select();
+			return false;
+		}
+		return true;
+	}
+	
+
+}
+	
+	
+</script>
+</head>
+<body onload="onload_id_focus();">
+	<h1>회원가입폼의 유효성체크[BOM]</h1><hr>
+	<xmp>
+	1.HTML서버로부터수신
+	2.<!DOCTYPE html> HTML5 parsing작업(head-->body)
+	3.DOM Tree생성
+	4.렌더링
+	</xmp>
+	<h3 style="width:400px;text-align: center">회원가입</h3>
+	<form 	id="joinForm" 
+			name="joinForm" 
+			action="join_action.jsp" 
+			method="post" 
+			style="border: 1px solid blue;width:400px;padding: 30px" 
+			onsubmit="return window.join_form_validation();">
+		아이디&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input id="id" type="text" name="id" value=""><br>
+		패쓰워드&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input id="password" type="password" name="password"><br>
+		패쓰워드확인
+		<input  id="repassword" type="password" name="repassword"><br>
+		이름&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input id="name" type="text" name="name"><br>
+		주소&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input id="address" type="text" name="address"><br><br>
+		<input type="submit" value="가입[submit button]" >
+		<input type="image" src="bbs_write.gif" >
+	</form>
+	<br/>
+	<div>
+	<input  type="button" value="가입[button]" onclick="join_form_validation_button();" >
+	<pre>
+	자바스크립트코드위치
+	 1.&lt;script&gt;태그안에
+ 2.onXX 으로시작하는 이벤트프로퍼티 안에기술(inline방식)
+ 3.a 태그의 href 속성안에기술 javascript:라는접두어를 붙여준다.
+
+	</pre>
+	<a href="javascript:join_form_validation_button();">가입</a>
+	<a href="javascript:join_form_validation_button();"><img src='bbs_write.gif'></a>
+	</div>
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,15 @@
+<%@page import="com.itwill.librarian.domain.Member"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	String sMemberNo = (String)session.getAttribute("sMemberNo");
+	Member sMember = (Member)session.getAttribute("sMember");
+	
+	if(sMember == null || sMemberNo == null){
+		out.println("<script>");
+		out.println("alert('로그인이 필요합니다.');");
+		out.println("location.href='memberLogin.jsp';");
+		out.println("</script>");
+		return; 
+	}
+%>  

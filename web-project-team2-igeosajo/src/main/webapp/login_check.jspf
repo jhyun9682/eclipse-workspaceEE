@@ -1,0 +1,14 @@
+<%@page import="com.itwill.toy.domain.Member"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	String sM_id = (String)session.getAttribute("sM_id");
+	Member sMember = (Member)session.getAttribute("sMember");
+	if(sM_id == null){
+		out.println("<script>");
+		out.println("alert('로그인이 필요한 페이지입니다');");
+		out.println("location.href='member_login_form.jsp'");
+		out.println("</script>");
+		return;
+	}
+%>  

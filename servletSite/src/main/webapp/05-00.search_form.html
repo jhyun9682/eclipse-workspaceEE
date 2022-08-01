@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h3>검색</h3><hr/>
+<!-- 
+form tag
+ - 요청시 전송되는 데이타를 묶어주는 단위
+ - form 안에 있는 데이타들은 요청시 쿼리스트링(query string)으로만들어져서 서버로 전송된다.
+   ex> 쿼리스트링 : name=kim&phone=1234&address=seoul  
+ - action:요청할 URL(서블릿URL)
+ - method:요청방법
+ -->
+<form action="search.do" method="get">
+	<input type="text" placeholder="검색어를 입력해주세요" name="searchkeyword">
+	<!-- 
+	<< submit button >>
+		- form 안에 존재해야한다.
+		- submit button 클릭시에 자기가 속해있는폼의 데이타모두를 쿼리스트링의 형태로변경해서
+		  action url에 ?를 사용해서 추가한후 요청한다[GET방식요청].	
+		  ex>http://localhost/servletSite/search.do?searchkeyword=java
+	
+	 -->
+	<input type="submit" value="검색">
+</form>
+
+
+</body>
+</html>

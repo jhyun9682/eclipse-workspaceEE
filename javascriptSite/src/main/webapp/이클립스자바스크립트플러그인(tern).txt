@@ -1,0 +1,4 @@
+<<tern>>
+http://oss.opensagres.fr/tern.repository/1.2.0/
+
+설치후 project 우측마우스버튼 -->Configure-->Convert to Tern Project 실행

@@ -1,0 +1,75 @@
+@charset "UTF-8";
+
+.layout{
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+div#content h1{
+	margin: 10px 0px 10px 10px;
+}
+
+.faq{
+    list-style: none;
+    margin: 0px 0px 0px 5px;
+    padding: 0;
+}
+.faq > li{
+  padding: 10px 0;
+  box-sizing: border-box;
+}
+.faq > li:nth-child(n+2){ /* 아이템 구분 점선 */
+  border-top: 1px dashed #aaa;
+}
+.faq input {
+  display: none;
+}
+
+.faq label { /* 제목 - 클릭 영역 */
+  font-size: 14px;
+  font-weight: bold;
+  color: #000;
+  margin: 20px 0 0;
+  cursor: pointer;
+}
+.faq label::before { /* 제목 앞 화살표 */
+  display: block;
+  content: "";
+  width: 0;
+  height: 0;
+  border: 8px solid transparent;
+  border-left: 8px solid #a00;
+  margin: 2px 0 0 8px;
+  float: left;
+}
+.faq input:checked + label::before { /* 내용 펼침 상태 제목 앞 화살표 */
+  border: 8px solid transparent;
+  border-top: 8px solid #a00;
+  border-bottom: 0;
+  margin: 8px 4px 0;
+}
+
+.faq div { /* 내용 영역 - 기본 감춤 상태 */
+  display: none;
+  color: #666;
+  overflow: hidden;
+  padding: 10px 0 0px 15px;
+  box-sizing: border-box;
+  transition: max-height 0.4s;
+}
+
+.faq input:checked + label + div { /* 내용 영역 펼침 */
+  display: block;
+}
+
+.qna label::before { /* 제목 앞 화살표 */
+  content: "▶";
+  display: block;
+  color: #a00;
+  margin-right: 8px;
+  float: left;
+}
+
+.qna input:checked + label::before { /* 내용 펼침 상태 제목 앞 화살표 */
+  content: "▼";
+}
