@@ -3,8 +3,8 @@ package book;
 public class BookSQL {
 	
 	//제목 검색
-	public static final String BOOK_SELECT_BY_TITLE
-	="select * from book where b_title=?";
+	public static final String BOOK_SELECT_BY_NAME
+	="select * from book where b_name=?";
 	
 	//저자 검색
 	public static final String BOOK_SELECT_BY_AUTHOR
