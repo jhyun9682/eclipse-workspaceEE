@@ -1,14 +1,15 @@
 package com.itwill.shop.order;
 
-import java.sql.Date;
+
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @author TEA
  *
  */
-public class Order {
-/*
+	/*
 	이름      널?       유형            
 	------- -------- ------------- 
 	O_NO    NOT NULL NUMBER(10)    
@@ -16,24 +17,18 @@ public class Order {
 	O_DATE           DATE          
 	O_PRICE          NUMBER(10)    
 	USERID           VARCHAR2(100) 
- */
+	*/
+public class Order {
 	private int o_no;
 	private String o_desc;
 	private Date o_date;
 	private int o_price;
-	private String userId;
-	private ArrayList<OrderItem> orderItemList=new ArrayList<OrderItem>();
+	private String userId;//FK 
+	private List<OrderItem> orderItemList=new ArrayList<OrderItem>();
 	public Order() {
+		
 	}
-	public Order(int o_no, String o_desc, Date o_date, int o_price, String userId) {
-		super();
-		this.o_no = o_no;
-		this.o_desc = o_desc;
-		this.o_date = o_date;
-		this.o_price = o_price;
-		this.userId = userId;
-	}
-	public Order(int o_no, String o_desc, Date o_date, int o_price, String userId, ArrayList<OrderItem> orderItemList) {
+	public Order(int o_no, String o_desc, Date o_date, int o_price, String userId, List<OrderItem> orderItemList) {
 		super();
 		this.o_no = o_no;
 		this.o_desc = o_desc;
@@ -42,12 +37,9 @@ public class Order {
 		this.userId = userId;
 		this.orderItemList = orderItemList;
 	}
-	
-	
 	public int getO_no() {
 		return o_no;
 	}
-	
 	public void setO_no(int o_no) {
 		this.o_no = o_no;
 	}
@@ -75,10 +67,10 @@ public class Order {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	public ArrayList<OrderItem> getOrderItemList() {
+	public List<OrderItem> getOrderItemList() {
 		return orderItemList;
 	}
-	public void setOrderItemList(ArrayList<OrderItem> orderItemList) {
+	public void setOrderItemList(List<OrderItem> orderItemList) {
 		this.orderItemList = orderItemList;
 	}
 	@Override
@@ -86,6 +78,9 @@ public class Order {
 		return "Order [o_no=" + o_no + ", o_desc=" + o_desc + ", o_date=" + o_date + ", o_price=" + o_price
 				+ ", userId=" + userId + ", orderItemList=" + orderItemList + "]";
 	}
+	
+	
+	
 	
 	
 	

@@ -28,6 +28,44 @@ public class OrderDao {
 		basicDataSource.setPassword(properties.getProperty("password"));
 		dataSource = basicDataSource;
 	}
+	/**************************2022.08.02구현************************/
+	public int create(Order order)throws Exception{
+		/*
+		 insert into orders(o_no,o_desc,o_date,o_price,userid) values (orders_o_no_seq.nextval,'비글외1종',sysdate,1550000,'guard1');
+		 insert into order_item(oi_no,oi_qty,o_no,p_no)  values(order_item_oi_no_seq.nextval,1,orders_o_no_seq.currval,1);
+		 */
+		Connection con=null;
+		PreparedStatement pstmt1 = null;
+		PreparedStatement pstmt2 = null;
+		try {
+			con=dataSource.getConnection();
+			
+			//con.setAutoCommit(false);
+			pstmt1=con.prepareStatement(OrderSQL.ORDER_INSERT);
+			pstmt1.setString(1, order.getO_desc());
+			pstmt1.setInt(2, order.getO_price());
+			pstmt1.setString(3, order.getUserId());
+			pstmt1.executeUpdate();
+			//orderitem insert
+			pstmt2=con.prepareStatement(OrderSQL.ORDER_ITEM_INSERT);
+			for(OrderItem orderItem:order.getOrderItemList()) {
+				pstmt2.clearParameters();
+				pstmt2.setInt(1,orderItem.getOi_qty());
+				pstmt2.setInt(2, orderItem.getProduct().getP_no());
+				pstmt2.executeUpdate();
+				
+			}
+			//con.commit();
+		}catch (Exception e) {
+			e.printStackTrace();
+			//con.rollback();
+			throw e;
+		}
+		return 0;
+	}
+	
+	
+	/****************************************************************/
 	/*
 	 * 주문전체삭제(ON DELETE CASCADE)
 	 */
@@ -109,43 +147,6 @@ public class OrderDao {
 	/*
 	 * 주문생성
 	 */
-	public int create(Order order) throws Exception{
-		/*
-		insert into orders(o_no,o_desc,o_date,o_price,userid) values (orders_o_no_SEQ.nextval,'비글외1종',sysdate-2,1050000,'guard1');
-		insert into order_item(oi_no,oi_qty,o_no,p_no) values(order_item_oi_no_SEQ.nextval,1,orders_o_no_SEQ.currval,1);
-		*/
-		String insertOrder=
-		"insert into orders(o_no,o_desc,o_date,o_price,userid) values (orders_o_no_SEQ.nextval,?,sysdate,?,?)";
-		String insertOrderItem=
-		"insert into order_item(oi_no,oi_qty,o_no,p_no) values(order_item_oi_no_SEQ.nextval,?,orders_o_no_SEQ.currval,?)";
-		Connection con=null;
-		PreparedStatement pstmt1=null;
-		PreparedStatement pstmt2=null;
-		try {
-			con=dataSource.getConnection();
-			con.setAutoCommit(false);
-			pstmt1=con.prepareStatement(insertOrder);
-			pstmt1.setString(1, order.getO_desc());
-			pstmt1.setInt(2, order.getO_price());
-			pstmt1.setString(3, order.getUserId());
-			pstmt1.executeUpdate();
-			
-			pstmt2=con.prepareStatement(insertOrderItem);
-			for(OrderItem orderItem:order.getOrderItemList()) {
-				pstmt2.setInt(1, orderItem.getOi_qty());
-				pstmt2.setInt(2, orderItem.getProduct().getP_no());
-				pstmt2.executeUpdate();
-			}
-			con.commit();
-		}catch (Exception e) {
-			e.printStackTrace();
-			con.rollback();
-			throw e;
-		}finally {
-			if(con!=null)con.close();
-		}
-		return 0;
-	}
 	
 	
 	/*
@@ -201,7 +202,7 @@ public class OrderDao {
 			order=new Order(rs.getInt("o_no"), 
 					rs.getString("o_desc"),
 					rs.getDate("o_date"),
-					rs.getInt("o_price"),rs.getString("userid"));
+					rs.getInt("o_price"),rs.getString("userid"),null);
 			do{
 				order.getOrderItemList()
 					.add(new OrderItem(

@@ -3,12 +3,13 @@ package book;
 public class Book {
 	private int b_no;
 	private String b_name; 
-	private int b_price;
-	private String b_summary;
-	private String b_image;
+	private String b_class;
 	private String b_author;
 	private String b_publisher;
-	private int category_no;
+	private String b_summary;
+	private String b_image;
+	private int b_price;
+	
 	
 	@Override
 	public String toString() {
@@ -16,16 +17,17 @@ public class Book {
 		return super.toString();
 	}
 	
-	public Book(int b_no,String b_name,int b_price,String b_summary,String b_image,String b_author,String b_publisher,int category_no) {
+	public Book(int b_no,String b_name,String b_class,String b_author,String b_publisher,String b_summary,String b_image,int b_price) {
 		super();
 		this.b_no=b_no;
 		this.b_name=b_name;
-		this.b_price=b_price;
-		this.b_summary=b_summary;
-		this.b_name=b_image;
+		this.b_class=b_class;
 		this.b_author=b_author;
 		this.b_publisher=b_publisher;
-		this.category_no=category_no;
+		this.b_summary=b_summary;
+		this.b_name=b_image;
+		this.b_price=b_price;
+
 	}
 
 	public int getB_no() {
@@ -84,12 +86,12 @@ public class Book {
 		this.b_publisher = b_publisher;
 	}
 
-	public int getCategory_no() {
-		return category_no;
+	public String getB_class() {
+		return b_class;
 	}
 
-	public void setCategory_no(int category_no) {
-		this.category_no = category_no;
+	public void setB_class(String b_class) {
+		this.b_class = b_class;
 	}
 	
 	
