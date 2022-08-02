@@ -13,8 +13,9 @@ public class Book {
 	
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
+		
+		return "Book [b_no="+b_no+",b_name="+b_name+",b_class="+b_class+",b_author="+b_author
+				+",b_publisher="+b_publisher+",b_summary="+b_summary+",b_image="+b_image+",b_price="+b_price+"]";
 	}
 	
 	public Book(int b_no,String b_name,String b_class,String b_author,String b_publisher,String b_summary,String b_image,int b_price) {

@@ -1,6 +1,6 @@
 --BOOK(책) insert
 --b_no, b_name, b_class, b_author, b_publisher, b_summary, b_image, b_price
-/*
+
 --1번 자기계발서
 insert into book values(book_b_no_seq.nextval, '마시멜로이야기', '자기계발','호아킴 데 포사다', '한국경제신문사','달콤한 유혹에서 이겨낼 때, 비로소 얻게 된다', '1_marshmallow', 12000);
 insert into book values(book_b_no_seq.nextval, '누가 내 치즈를 옮겼을까?', '자기계발','스펜서 존슨','진명출판사','인생에서 부딪힐 변화를 대처할 수 있는 지혜','1_who',13500);
@@ -31,4 +31,4 @@ insert into book values(book_b_no_seq.nextval, 'R의 공포가 온다', '공포'
 insert into book values(book_b_no_seq.nextval, '신비아파트 오싹오싹 무서운 이야기','공포', '앨리스,윤희정', '서울문화사','무서운 신비아파트에서 탈출하자', '5_apart', 15000);
 insert into book values(book_b_no_seq.nextval, '오싹오싹 OK 공포 만화', '공포', '백철,계건일', '효리원', '심장이 쫄깃! 머리카락이 쭈뼛!', '5_ok', 5500);
 insert into book values(book_b_no_seq.nextval, '악몽', '공포', '조이스 캐럴 오츠','포레','너무 무서워서 줄거리가 없습니다.','5_dream', 15000);
-*/
+

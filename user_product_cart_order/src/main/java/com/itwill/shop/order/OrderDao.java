@@ -39,26 +39,35 @@ public class OrderDao {
 		PreparedStatement pstmt2 = null;
 		try {
 			con=dataSource.getConnection();
-			
-			//con.setAutoCommit(false);
-			pstmt1=con.prepareStatement(OrderSQL.ORDER_INSERT);
-			pstmt1.setString(1, order.getO_desc());
-			pstmt1.setInt(2, order.getO_price());
-			pstmt1.setString(3, order.getUserId());
+			con.setAutoCommit(false);
+			/*
+			 * transaction시작
+			 */
+			//order insert
+			pstmt1 = con.prepareStatement(OrderSQL.ORDER_INSERT);
+			pstmt1.setString(1,order.getO_desc());
+			pstmt1.setInt(2,order.getO_price());
+			pstmt1.setString(3,order.getUserId());
 			pstmt1.executeUpdate();
 			//orderitem insert
 			pstmt2=con.prepareStatement(OrderSQL.ORDER_ITEM_INSERT);
 			for(OrderItem orderItem:order.getOrderItemList()) {
 				pstmt2.clearParameters();
-				pstmt2.setInt(1,orderItem.getOi_qty());
+				pstmt2.setInt(1, orderItem.getOi_qty());
 				pstmt2.setInt(2, orderItem.getProduct().getP_no());
 				pstmt2.executeUpdate();
-				
 			}
-			//con.commit();
+			/*
+			 * transaction종료(성공)
+			 */
+			con.commit();
+			
 		}catch (Exception e) {
 			e.printStackTrace();
-			//con.rollback();
+			/*
+			 * transaction종료(실패)
+			 */
+			con.rollback();
 			throw e;
 		}
 		return 0;

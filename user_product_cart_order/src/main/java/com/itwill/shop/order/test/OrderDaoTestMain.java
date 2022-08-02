@@ -2,40 +2,49 @@ package com.itwill.shop.order.test;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 
+import com.itwill.shop.cart.CartDao;
 import com.itwill.shop.cart.CartItem;
 import com.itwill.shop.order.Order;
 import com.itwill.shop.order.OrderDao;
 import com.itwill.shop.order.OrderItem;
 import com.itwill.shop.product.Product;
 import com.itwill.shop.product.ProductDao;
-import com.itwill.shop.user.User;
 
 public class OrderDaoTestMain {
 
 	public static void main(String[] args) throws Exception{
 		OrderDao orderDao=new OrderDao();
-		System.out.println(orderDao.list("guard1"));
-		System.out.println(orderDao.detail("guard1",1));
-		
+		CartDao cartDao=new CartDao();
 		/*
-		 * 1.상품에서직접주문
+		  1.상품에서직접주문
+		*/  
+		  
+		  /*
+		  2.cart에서 주문
+		  로그인한 guard1님이 주문(1번 1마리,2번 2마리)
 		 */
-		int p_qty=1;
-		int p_no=1;
-		ProductDao productDao=new ProductDao();
-		Product product=productDao.selectByNo(p_no);
-		
-		ArrayList<OrderItem> jumunDetailList=new ArrayList<OrderItem>();
-		jumunDetailList.add(new OrderItem(0, p_qty, p_no, product));
-		Order newJumun=new Order(0,product.getP_name()+"외 0종" , new Date(0), product.getP_price(), "guard3",jumunDetailList);
-		
-		orderDao.create(newJumun);
-		System.out.println(orderDao.list("guard3"));
-		
+		List<CartItem> cartItemList=cartDao.getCartList("guard1");
+		List<OrderItem> orderItemList=new ArrayList<OrderItem>();
 		/*
-		 * 2.cart에서 주문
+		 * CartItem-->OrderItem
 		 */
+		int order_price=0;
+		for (CartItem cartItem : cartItemList) {
+			orderItemList.add(new OrderItem(0, cartItem.getCart_qty(), 0, cartItem.getProduct()));
+			order_price+=cartItem.getCart_qty()*cartItem.getProduct().getP_price();
+		}
+		
+		Order newOrder=
+				new Order(0,
+						orderItemList.get(0).getProduct().getP_name()+"외 "+(orderItemList.size()-1)+"종",
+						null,
+						order_price,
+						null,
+						orderItemList);
+		orderDao.create(newOrder);
+		
 		
 		
 	}
