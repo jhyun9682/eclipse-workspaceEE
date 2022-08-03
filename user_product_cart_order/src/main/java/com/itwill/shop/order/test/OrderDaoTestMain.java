@@ -16,13 +16,16 @@ public class OrderDaoTestMain {
 
 	public static void main(String[] args) throws Exception{
 		OrderDao orderDao=new OrderDao();
-		CartDao cartDao=new CartDao();
-		ProductDao productDao=new ProductDao();
+		orderDao.list_datail(null);
+		
+		//CartDao cartDao=new CartDao();
+		//ProductDao productDao=new ProductDao();
 		/*
 		  1.상품에서직접주문
 		     - 상품번호 1번
 		     - 상품수량 1개
 		*/  
+		/*
 		int p_no=1;
 		int p_qty=1;
 		List<OrderItem> orderItemList=new ArrayList<OrderItem>();
@@ -37,7 +40,7 @@ public class OrderDaoTestMain {
 						"guard1",
 						orderItemList);
 		orderDao.create(newOrder);
-		
+		*/
 		
 		/*
 		  2.cart에서 cartitem 전체주문

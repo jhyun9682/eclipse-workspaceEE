@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import javax.sql.DataSource;
@@ -72,7 +73,45 @@ public class OrderDao {
 		}
 		return 0;
 	}
-	
+	/*
+	 * 주문상세리스트(특정사용자)
+	 */
+	public List<Order> list_datail(String userId)throws Exception{
+		List<Order> orderList=new ArrayList<Order>();
+		
+		Connection con=dataSource.getConnection();
+		PreparedStatement pstmt1=con.prepareStatement(OrderSQL.ORDER_O_NO_LIST);
+		PreparedStatement pstmt2=con.prepareStatement(OrderSQL.ORDER_LIST_BY_USERID_O_NO);
+		
+		pstmt1.setString(1, userId);
+		ResultSet rs1=pstmt1.executeQuery();
+		while(rs1.next()) {
+			int temp_o_no=rs1.getInt("o_no");
+			
+			pstmt2.setString(1, userId);
+			pstmt2.setInt(2, temp_o_no);
+			ResultSet rs2= pstmt2.executeQuery();	
+			if(rs2.next()) {
+				Order order =new Order(rs2.getInt("o_no"),rs2.getString("o_desc"),
+						rs2.getDate("o_date"),rs2.getInt("o_price"),rs2.getString("userid"),null);
+				
+			}
+			
+		}
+		
+		
+		//pstmt.setString(1, userId);
+		//ResultSet rs=pstmt.executeQuery();
+		/*
+		List<Order> orderList=new ArrayList<Order>();
+			
+		while(rs.next()) {
+			Order order=new Order(rs.getInt("o_no"),rs.getString("o_desc"),
+					rs.getDate("o_date"),rs.getInt("o_price"),rs.getString("userId"),null);
+			orderList.add(order);
+		}*/
+		return null;
+		}
 	
 	/****************************************************************/
 	/*
