@@ -2,7 +2,7 @@
 
 import java.util.List;
 
-import com.itwill.util.PageCalculator;
+
 import com.itwill.util.PageMaker;
 
 public class BoardService {
@@ -64,7 +64,7 @@ public class BoardService {
 		int totalRecordCount = boardDao.getBoardCount();
 		//2.paging계산(PageMaker 유틸클래스)
 		PageMaker pageMaker=new PageMaker(totalRecordCount,currentPage);
-	
+		
 		//3.게시물데이타 얻기
 		List<Board> boardList=
 				boardDao.findBoardList(pageMaker.getPageBegin(),
@@ -76,27 +76,7 @@ public class BoardService {
 		pageMakerBoardList.pageMaker=pageMaker;
 		return pageMakerBoardList;
 	}
-	/*
-	 * 게시물리스트
-	 */
-	public BoardListPageDto findBoardList(PageInputDto pageConfig) throws Exception{
-		//1.전체글의 갯수
-		int totalRecordCount = boardDao.getBoardCount();
-		//2.paging계산(PageCounter 유틸클래스)
-		//BoardListPageDto 클래스-->결과데이타 DTO,VO(Board ArrayList + Paging)
-		BoardListPageDto boardListPageDto=PageCalculator.getPagingInfo(
-								Integer.parseInt(pageConfig.getSelectPage()),
-								pageConfig.getRowCountPerPage(),
-								pageConfig.getPageCountPerPage(),
-								totalRecordCount);
-		
-		//3.게시물데이타 얻기
-		List<Board> boardList=
-				boardDao.findBoardList(boardListPageDto.getStartRowNum(),
-						boardListPageDto.getEndRowNum());
-		boardListPageDto.setList(boardList);
-		return boardListPageDto;
-	}
+	
 	/*
 	 * 게시물수정
 	 */

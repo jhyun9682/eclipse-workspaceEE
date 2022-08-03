@@ -16,7 +16,8 @@ public class OrderDaoTestMain {
 
 	public static void main(String[] args) throws Exception{
 		OrderDao orderDao=new OrderDao();
-		orderDao.list_datail(null);
+		List<Order> orderList=orderDao.list_datail("guard1");
+		System.out.println(orderList);
 		
 		//CartDao cartDao=new CartDao();
 		//ProductDao productDao=new ProductDao();

@@ -35,9 +35,45 @@ public class PageMaker {
         curBlock = 1;                   // 현재 페이지 블록 번호
         this.curPage = curPage;         // 현재 페이지 설정
         setTotPage(count);              // 전체 페이지 갯수 계산
-        setPageRange(); 
+        setPageRange(); 				// 게시물 시작번호 끝번호
         setTotBlock(count);             // 전체 페이지 블록 갯수 계산
         setBlockRange();                // 페이지 블록의 시작, 끝 번호 계산
+        
+        System.out.println("***************페이지정보***************");
+		System.out.println("01.화면당 페이지 수\t\t:"+BLOCK_SCALE);
+		System.out.println("02.한페이지당 게시물 수\t\t:"+PAGE_SCALE);
+		System.out.println("03.현재(요청)페이지번호\t\t:"+curPage);
+		System.out.println("04.전체게시물수\t\t\t:"+count);
+		System.out.println("05.전체페이지수\t\t\t:"+totPage);
+		System.out.println("06.현재(요청)페이지블록번호\t:"+curBlock);
+		System.out.println("07.현재(요청)페이지블록시작번호\t:"+blockBegin);
+		System.out.println("08.현재(요청)페이지블록끝번호\t:"+blockEnd);
+		System.out.println("09.이전블록시작페이지번호\t:"+prevGroupStartPage);
+		System.out.println("10.다음블록시작페이지번호\t:"+nextGroupStartPage);
+		System.out.println("11.이전페이지번호\t\t:"+prevPage);
+		System.out.println("12.다음페이지번호\t\t:"+nextPage);
+		System.out.println("13.DB에서select할게시물시작번호 :"+pageBegin);
+		System.out.println("14.DB에서select할게시물끝번호   :"+pageEnd);
+		System.out.println("**************************************");
+        /*
+        8 페이지(71 ~ 80)
+		***************페이지정보***********************************
+		01.화면당 페이지 수				(BLOCK_SCALE) 		10
+		02.한페이지당 게시물 수			(PAGE_SCALE)  		10 
+		03.현재(요청)페이지번호			(curPage)      	     8
+		04.전체게시물수					(count)		  	   563	
+		05.전체페이지수					(totPage)     		57 
+		06.현재(요청)페이지블록번호		(curBlock)    		 1
+		07.현재(요청)페이지블록시작번호	(blockBegin)  		 1 
+		08.현재(요청)페이지블록끝번호	(blockEnd)    		10
+		09.이전블록시작페이지번호		(prevGroupStartPage) 0
+		10.다음블록시작페이지번호		(nextGroupStartPage)11
+		11.이전페이지번호				(prevPage)           7
+		12.다음페이지번호				(nextPage)           9
+		13.DB에서select할게시물시작번호	(pageBegin)         71
+		14.DB에서select할게시물끝번호	(pageEnd)           80
+		*************************************************************
+         */
     }
      
     public void setBlockRange(){
@@ -58,14 +94,12 @@ public class PageMaker {
         /***********************************************/
         // 이전다음 화면그룹의 시작페이지와 끝페이지
         prevGroupStartPage = blockBegin - BLOCK_SCALE;		
-     	//if(prevGroupStartPage < 0){// groupNo이 0인 경우(페이지 인덱스가 0~10사이)
-     	//	prevGroupStartPage = 0;
-     	//}
+     	if(prevGroupStartPage < 0){// groupNo이 0인 경우(페이지 인덱스가 0~10사이)
+     		prevGroupStartPage = 0;
+     	}
      	nextGroupStartPage = blockBegin + BLOCK_SCALE;
-        //if(nextGroupStartPage > totPage)nextGroupStartPage=totPage;
+        if(nextGroupStartPage > totPage)nextGroupStartPage=totPage;
      	/***********************************************/
-        
-        
     }
      
     public int getPrevGroupStartPage() {

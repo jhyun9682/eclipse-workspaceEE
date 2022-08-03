@@ -1,11 +1,11 @@
+<%@page import="com.itwill.board.BoardListPageMakerDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="com.itwill.board.Board"%>
-<%@page import="com.itwill.board.BoardListPageDto"%>
+
 <%@page import="com.itwill.board.BoardService"%>
 <%@page import="com.itwill.board.PageInputDto"%>
-<%!
-public String getTitleString(Board board) {
+<%!public String getTitleString(Board board) {
 		StringBuilder title = new StringBuilder(128);
 		String t = board.getTitle();
 		if (t.length() > 15) {
@@ -23,30 +23,22 @@ public String getTitleString(Board board) {
 			title.append("<img border='0' src='image/re.gif'/>");
 		}
 		
-		
 		title.append(t.replace(" ", "&nbsp;"));
+		
 		return title.toString();
-}
-%>
+	}%>
 
 <%
-//1.요청페이지번호	
+	//1.요청페이지번호	
 String pageno=request.getParameter("pageno");
 if(pageno==null||pageno.equals("")){
 	pageno="1";
 }	
-//2.한페이지에표시할 게시물수 
-int rowCountPerPage = 10;
-//3.한화면에보여줄 페이지번호갯수( 1 2 3 4 5 6 7 8 9 10 ▶ ▶▶)
-int pageCountPerPage =10;
-//페이징(계산)을위한DTO,VO
-PageInputDto pageInputDto=
-		new PageInputDto(rowCountPerPage,pageCountPerPage,pageno,"","");
 
 //게시물조회
-BoardService boardService=new BoardService();
-BoardListPageDto boardListPage 
-	=boardService.findBoardList(pageInputDto);
+
+BoardListPageMakerDto boardListPage 
+	=new BoardService().findBoardList(Integer.parseInt(pageno));
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -96,9 +88,9 @@ BoardListPageDto boardListPage
 								</tr>
 								<tr bgcolor="#FFFFFF">
 									<td height="20" class="t1" align="right" valign="bottom">♠
-										총 <font color="#FF0000"><%=boardListPage.getTotalRecordCount()%></font>
-										건 | 현재페이지( <font color="#FF0000"><%=boardListPage.getSelectPageNo()%></font>
-										/ <font color="#0000FF"><%=boardListPage.getTotalPageCount()%></font>
+										총 <font color="#FF0000"><%=boardListPage.totRecordCount%></font>
+										건 | 현재페이지( <font color="#FF0000"><%=boardListPage.pageMaker.getCurPage()%></font>
+										/ <font color="#0000FF"><%=boardListPage.pageMaker.getTotPage()%></font>
 										)
 									</td>
 								</tr>
@@ -114,11 +106,11 @@ BoardListPageDto boardListPage
 										<td width=70 align=center bgcolor="E6ECDE">본횟수</td>
 									</tr>
 									<%
-										for (Board board : boardListPage.getList()) {
+										for (Board board : boardListPage.itemList) {
 									%>
 									<tr>
 										<td width=280 bgcolor="ffffff" style="padding-left: 10px" align="left">
-										<a href='board_view.jsp?boardno=<%=board.getBoardNo()%>&pageno=<%=boardListPage.getSelectPageNo()%>'>
+										<a href='board_view.jsp?boardno=<%=board.getBoardNo()%>&pageno=<%=boardListPage.pageMaker.getCurPage()%>'>
 										<%=this.getTitleString(board)%>
 										</a>
 										</td>
@@ -149,16 +141,17 @@ BoardListPageDto boardListPage
 							<table border="0" cellpadding="0" cellspacing="1" width="590">
 								<tr>
 									<td align="center">
-										<%if (boardListPage.isShowFirst()) {%> 
-											<a href="./board_list.jsp?pageno=1">◀◀</a>&nbsp; 
-										<%}%> 
-										<%if (boardListPage.isShowPreviousGroup()) {%>
-											<a href="./board_list.jsp?pageno=<%=boardListPage.getPreviousGroupStartPageNo()%>">◀</a>&nbsp;&nbsp;
-										<%}%>
+							     
+										 <%if(boardListPage.pageMaker.getPrevGroupStartPage()>0) {%>    
+										    <a href="./board_list.jsp?pageno=1">◀◀</a>&nbsp;
+										 <%}%>
+										 <%if(boardListPage.pageMaker.getPrevPage()>0) {%>    
+											<a href="./board_list.jsp?pageno=<%=boardListPage.pageMaker.getPrevPage()%>">◀</a>&nbsp;&nbsp;
+										 <%}%>
+										
 										<%
-										 	for (int i = boardListPage.getStartPageNo(); i <= boardListPage
-										 			.getEndPageNo(); i++) {
-										 	if (boardListPage.getSelectPageNo() == i) {
+											for (int i = boardListPage.pageMaker.getBlockBegin(); i <= boardListPage.pageMaker.getBlockEnd(); i++) {
+										 	if (boardListPage.pageMaker.getCurPage() == i) {
 										%>
 										 <font color='red'><strong><%=i%></strong></font>&nbsp;
 										<%} else {%>
@@ -166,19 +159,15 @@ BoardListPageDto boardListPage
 										<%
 										   }
 										  }%>
-										   <%
- 	if (boardListPage.isShowNextGroup()) {
- %> <a
-										href="./board_list.jsp?pageno=<%=boardListPage.getNextGroupStartPageNo()%>">▶&nbsp;</a>
-										<%
-											}
-										%> <%
- 	if (boardListPage.isShowLast()) {
- %> <a
-										href="./board_list.jsp?pageno=<%=boardListPage.getTotalPageCount()%>">▶▶</a>&nbsp;
-										<%
-											}
-										%>
+										  
+										  
+										 <%if(boardListPage.pageMaker.getNextGroupStartPage()< boardListPage.pageMaker.getTotPage()){%>
+										  <a href="./board_list.jsp?pageno=<%=boardListPage.pageMaker.getNextPage()%>">▶&nbsp;</a>
+										 <%}%>
+										 <%if(boardListPage.pageMaker.getNextGroupStartPage()< boardListPage.pageMaker.getTotPage()){%>
+										<a
+										href="./board_list.jsp?pageno=<%=boardListPage.pageMaker.getNextGroupStartPage()%>">▶▶</a>&nbsp;
+										 <%}%>
 									</td>
 								</tr>
 							</table> <!-- button -->
