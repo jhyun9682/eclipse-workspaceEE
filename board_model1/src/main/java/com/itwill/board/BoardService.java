@@ -63,15 +63,11 @@ public class BoardService {
 		//1.전체글의 갯수
 		int totalRecordCount = boardDao.getBoardCount();
 		//2.paging계산(PageMaker 유틸클래스)
-		
-		
 		PageMaker pageMaker=new PageMaker(totalRecordCount,currentPage);
-		
 		//3.게시물데이타 얻기
 		List<Board> boardList=
 				boardDao.findBoardList(pageMaker.getPageBegin(),
 											pageMaker.getPageEnd());
-		
 		BoardListPageMakerDto pageMakerBoardList=new BoardListPageMakerDto();
 		pageMakerBoardList.totRecordCount=totalRecordCount;
 		pageMakerBoardList.itemList=boardList;

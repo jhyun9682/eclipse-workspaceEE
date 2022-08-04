@@ -15,7 +15,22 @@ public class Board {
 	private int groupNo;
 	private int step;
 	private int depth;
-	
+	public Board() {
+		// TODO Auto-generated constructor stub
+	}
+	public Board(int boardNo, String title, String writer, String content, Date regDate, int readCount, int groupNo,
+			int step, int depth) {
+		super();
+		this.boardNo = boardNo;
+		this.title = title;
+		this.writer = writer;
+		this.content = content;
+		this.regDate = regDate;
+		this.readCount = readCount;
+		this.groupNo = groupNo;
+		this.step = step;
+		this.depth = depth;
+	}
 	public int getBoardNo() {
 		return boardNo;
 	}

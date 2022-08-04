@@ -11,8 +11,8 @@ public class BookDaoTestMain {
 	public static void main(String[] args) throws Exception {
 		BookDao bookDao = new BookDao();
 		/* 전체 리스트
-		 * ArrayList<Book> totBookList = bookDao.getBookList(); for (Book book :
-		 * totBookList) { System.out.println(book); }
+		 ArrayList<Book> totBookList = bookDao.getBookList(); 
+		 for (Book book :totBookList) { System.out.println(book); }
 		 */
 		
 		System.out.println(">> 번호로 찾기");

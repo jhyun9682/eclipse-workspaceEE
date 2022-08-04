@@ -32,13 +32,12 @@ public class PageMaker {
     // 생성자
     // PageMaker(게시물 갯수, 현재 페이지 번호)
     public PageMaker(int count, int curPage){
-        curBlock = 1;                   // 현재 페이지 블록 번호
+        this.curBlock = 1;              // 현재 페이지 블록 번호
         this.curPage = curPage;         // 현재 페이지 설정
         setTotPage(count);              // 전체 페이지 갯수 계산
-        setPageRange(); 				// 게시물 시작번호 끝번호
         setTotBlock(count);             // 전체 페이지 블록 갯수 계산
+        setPageRange(); 				// 게시물 시작번호 끝번호
         setBlockRange();                // 페이지 블록의 시작, 끝 번호 계산
-        
         System.out.println("***************페이지정보***************");
 		System.out.println("01.화면당 페이지 수\t\t:"+BLOCK_SCALE);
 		System.out.println("02.한페이지당 게시물 수\t\t:"+PAGE_SCALE);
@@ -75,7 +74,18 @@ public class PageMaker {
 		*************************************************************
          */
     }
-     
+    
+    // 총페이지수 계산
+    public void setTotPage(int count) {
+        // Math.ceil(실수) 올림 처리
+        totPage = (int) Math.ceil(count*1.0 / PAGE_SCALE);
+    } 
+    // 페이지 블록(그룹)의 갯수 계산(총 100페이지라면 10개의 블록)
+    public void setTotBlock(int count) {
+        // 전체 페이지 갯수 / 10
+        // 91 / 10 => 9.1 => 10개
+        totBlock = (int)Math.ceil(count / BLOCK_SCALE);
+    }
     public void setBlockRange(){
         // *현재 페이지가 몇번째 페이지 블록에 속하는지 계산
         curBlock = (int)Math.ceil((curPage-1) / BLOCK_SCALE)+1;
@@ -101,7 +111,14 @@ public class PageMaker {
         if(nextGroupStartPage > totPage)nextGroupStartPage=totPage;
      	/***********************************************/
     }
-     
+    // 게시물시작번호,종료번호계산
+    public void setPageRange(){
+		// WHERE rn BETWEEN #{start} AND #{end}
+        // 시작번호 = (현재페이지-1)*페이지당 게시물수 +1
+        pageBegin = (curPage-1)*PAGE_SCALE+1;
+        // 끝번호 = 시작번호+페이지당 게시물수 -1
+        pageEnd = pageBegin+PAGE_SCALE-1;
+    } 
     public int getPrevGroupStartPage() {
 		return prevGroupStartPage;
 	}
@@ -117,15 +134,6 @@ public class PageMaker {
 	public void setNextGroupStartPage(int nextGroupStartPage) {
 		this.nextGroupStartPage = nextGroupStartPage;
 	}
-
-	public void setPageRange(){
-		// WHERE rn BETWEEN #{start} AND #{end}
-        // 시작번호 = (현재페이지-1)*페이지당 게시물수 +1
-        pageBegin = (curPage-1)*PAGE_SCALE+1;
-        // 끝번호 = 시작번호+페이지당 게시물수 -1
-        pageEnd = pageBegin+PAGE_SCALE-1;
-    }
-     
     // Getter/Setter
     public int getCurPage() {
         return curPage;
@@ -148,20 +156,9 @@ public class PageMaker {
     public int getTotPage() {
         return totPage;
     }
-    public void setTotPage(int count) {
-        // Math.ceil(실수) 올림 처리
-        totPage = (int) Math.ceil(count*1.0 / PAGE_SCALE);
-    }
     public int getTotBlock() {
         return totBlock;
     }
-    // 페이지 블록(그룹)의 갯수 계산(총 100페이지라면 10개의 블록)
-    public void setTotBlock(int count) {
-        // 전체 페이지 갯수 / 10
-        // 91 / 10 => 9.1 => 10개
-        totBlock = (int)Math.ceil(count / BLOCK_SCALE);
-    }
-     
     public int getCurBlock() {
         return curBlock;
     }

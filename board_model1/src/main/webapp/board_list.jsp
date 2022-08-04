@@ -2,10 +2,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="com.itwill.board.Board"%>
-
 <%@page import="com.itwill.board.BoardService"%>
-<%@page import="com.itwill.board.PageInputDto"%>
-<%!public String getTitleString(Board board) {
+<%!
+public String getTitleString(Board board) {
 		StringBuilder title = new StringBuilder(128);
 		String t = board.getTitle();
 		if (t.length() > 15) {
@@ -26,7 +25,8 @@
 		title.append(t.replace(" ", "&nbsp;"));
 		
 		return title.toString();
-	}%>
+	}
+%>
 
 <%
 	//1.요청페이지번호	
@@ -106,7 +106,7 @@ BoardListPageMakerDto boardListPage
 										<td width=70 align=center bgcolor="E6ECDE">본횟수</td>
 									</tr>
 									<%
-										for (Board board : boardListPage.itemList) {
+										for (Board board:boardListPage.itemList) {
 									%>
 									<tr>
 										<td width=280 bgcolor="ffffff" style="padding-left: 10px" align="left">
@@ -148,23 +148,21 @@ BoardListPageMakerDto boardListPage
 										 <%if(boardListPage.pageMaker.getPrevPage()>0) {%>    
 											<a href="./board_list.jsp?pageno=<%=boardListPage.pageMaker.getPrevPage()%>">◀</a>&nbsp;&nbsp;
 										 <%}%>
-										
 										<%
 											for (int i = boardListPage.pageMaker.getBlockBegin(); i <= boardListPage.pageMaker.getBlockEnd(); i++) {
 										 	if (boardListPage.pageMaker.getCurPage() == i) {
 										%>
-										 <font color='red'><strong><%=i%></strong></font>&nbsp;
+										 <font color='blue'><strong><%=i%></strong></font>&nbsp;
 										<%} else {%>
 										<a href="./board_list.jsp?pageno=<%=i%>"><strong><%=i%></strong></a>&nbsp;
 										<%
 										   }
-										  }%>
-										  
-										  
-										 <%if(boardListPage.pageMaker.getNextGroupStartPage()< boardListPage.pageMaker.getTotPage()){%>
+										  }
+										 %>
+										 <%if(boardListPage.pageMaker.getCurPage() != boardListPage.pageMaker.getTotPage()){%>
 										  <a href="./board_list.jsp?pageno=<%=boardListPage.pageMaker.getNextPage()%>">▶&nbsp;</a>
 										 <%}%>
-										 <%if(boardListPage.pageMaker.getNextGroupStartPage()< boardListPage.pageMaker.getTotPage()){%>
+										 <%if(boardListPage.pageMaker.getNextGroupStartPage() < boardListPage.pageMaker.getTotPage()){%>
 										<a
 										href="./board_list.jsp?pageno=<%=boardListPage.pageMaker.getNextGroupStartPage()%>">▶▶</a>&nbsp;
 										 <%}%>
