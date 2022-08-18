@@ -11,7 +11,7 @@
 	  * 3.GuestService객체 selectAll() 메쏘드호출
 	  * 4.ArrayList<Guest> 리스트 출력
 	  */
-	request.setCharacterEncoding("UTF-8");
+	//request.setCharacterEncoding("UTF-8");
 	GuestService guestService=new GuestService();
 	List<Guest> guestList=guestService.selectAll();
 %>

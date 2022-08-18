@@ -10,7 +10,7 @@
  * 3.GuestService객체 selectByNo() 메쏘드호출
  * 4.Guest  출력
  */
- request.setCharacterEncoding("UTF-8");
+ //request.setCharacterEncoding("UTF-8");
  String guest_noStr=request.getParameter("guest_no");
  if(guest_noStr==null ||guest_noStr.equals("")){
 	 response.sendRedirect("guest_main.jsp");
