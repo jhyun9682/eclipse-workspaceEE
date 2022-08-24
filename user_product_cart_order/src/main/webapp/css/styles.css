@@ -1,10 +1,18 @@
+@font-face {
+    font-family: 'HancomUljuBangudae';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205-2@1.0/HancomUljuBangudae.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
 html, body {
 	margin: 0;
-	padding: 0
+	padding: 0;
+	
 }
 
 body {
 	font: 76% arial, sans-serif;
+	font-family:'HancomUljuBangudae';
 	text-align: center
 }
 
@@ -76,7 +84,7 @@ div#footer p {
 }
 
 div#container {
-	width: 700px;
+	width: 800px;
 	margin: 0 auto
 }
 /*

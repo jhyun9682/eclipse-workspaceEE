@@ -10,20 +10,27 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.sql.rowset.serial.SerialException;
 
-public class LoginCheckFilter implements Filter {
+public class LoginCheckFilter implements Filter{
 	@Override
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) 
-	throws IOException, ServletException{
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
+		
 		HttpServletRequest req=(HttpServletRequest)request;
 		HttpServletResponse res=(HttpServletResponse)response;
 		HttpSession session=req.getSession();
-		String sUserId=(String)session.getAttribute("sUserId");
+		
+		System.out.println("LoginCheckFilter-->"+req.getRequestURI());
+		
+		
+		String sUserId = (String)session.getAttribute("sUserId");
 		if(sUserId==null) {
 			res.sendRedirect("user_main.do");
 			return;
 		}
+		
 	}
+	
+	
 
 }

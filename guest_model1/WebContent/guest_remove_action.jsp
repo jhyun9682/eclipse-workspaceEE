@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	/*
+/*
 	GET방식이면 guest_main.jsp redirection
 	
 	0.요청객체encoding설정

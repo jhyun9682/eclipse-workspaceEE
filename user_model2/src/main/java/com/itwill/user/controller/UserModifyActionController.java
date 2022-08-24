@@ -18,12 +18,9 @@ public class UserModifyActionController implements Controller {
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
 		String forwardPath = "";
+		String sUserId=(String)request.getSession().getAttribute("sUserId");
 		/**************** login_check *******************/
-		String sUserId = (String) request.getSession().getAttribute("sUserId");
-		if (sUserId == null) {
-			forwardPath = "redirect:user_main.do";
-			return forwardPath;
-		}
+		
 		/*********************************************/
 		/*
 		0.login 여부체크

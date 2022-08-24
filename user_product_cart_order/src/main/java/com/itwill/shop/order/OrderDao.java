@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
@@ -75,13 +76,14 @@ public class OrderDao {
 	}
 	/*
 	 * 주문상세리스트(특정사용자)
+	 * 
 	 */
-	public List<Order> list_datail(String userId)throws Exception{
+	public List<Order> list_detail(String userId) throws Exception{
 		List<Order> orderList=new ArrayList<Order>();
 		
 		Connection con=dataSource.getConnection();
-		PreparedStatement pstmt1=con.prepareStatement(OrderSQL.ORDER_O_NO_LIST);
-		PreparedStatement pstmt2=con.prepareStatement(OrderSQL.ORDER_LIST_BY_USERID_O_NO);
+		PreparedStatement pstmt1 = con.prepareStatement(OrderSQL.ORDER_O_NO_LIST);
+		PreparedStatement pstmt2 = con.prepareStatement(OrderSQL.ORDER_LIST_BY_USERID_O_NO);
 		
 		pstmt1.setString(1, userId);
 		ResultSet rs1=pstmt1.executeQuery();
@@ -90,26 +92,52 @@ public class OrderDao {
 			
 			pstmt2.setString(1, userId);
 			pstmt2.setInt(2, temp_o_no);
-			ResultSet rs2= pstmt2.executeQuery();
+			ResultSet rs2 = pstmt2.executeQuery();
 			Order order=null;
-			//Order order=null;
 			if(rs2.next()) {
-				 order =new Order(rs2.getInt("o_no"),rs2.getString("o_desc"),
-						rs2.getDate("o_date"),rs2.getInt("o_price"),rs2.getString("userid"),null);
+				//int o_no, String o_desc, Date o_date, int o_price, String userId, List<OrderItem> orderItemList
+				order = new Order(rs2.getInt("o_no"),
+										rs2.getString("o_desc"),
+										rs2.getDate("o_date"),
+										rs2.getInt("o_price"),
+										rs2.getString("userid"),
+										null);
+				
 				List<OrderItem> orderItemList=new ArrayList<OrderItem>();
 				do {
-					orderItemList.add(new OrderItem(rs2.getInt("oi_no"),rs2.getInt("oi_qty"),rs2.getInt("o_no"),
-							new Product(rs2.getInt("p_no"), rs2.getString("p_name"), 
-									rs2.getInt("p_price"), rs2.getString("p_image"),
-									rs2.getString("p_desc"),rs2.getInt("p_click_count"))));
+					//int oi_no, int oi_qty, int o_no, Product product
+					orderItemList.add(new OrderItem(rs2.getInt("oi_no"),
+													rs2.getInt("oi_qty"),
+													rs2.getInt("o_no"),
+													//int p_no, String p_name, int p_price, String p_image, String p_desc, int p_click_count
+													new Product(rs2.getInt("p_no"),
+																rs2.getString("p_name"),
+																rs2.getInt("p_price"),
+																rs2.getString("p_image"),
+																rs2.getString("p_desc"),
+																rs2.getInt("p_click_count"))));
+					
 				}while(rs2.next());
 				order.setOrderItemList(orderItemList);
-				}//end if
+			}//end if
 			orderList.add(order);
-			
 		}//end while
+		/*
+		2	다스훈트외1종	2022/08/02	2400000	guard1	3	1	2	7	7	닥스훈트	800000	dachshund.jpg	기타 상세 정보 등...
+		2	다스훈트외1종	2022/08/02	2400000	guard1	4	2	2	8	8	사모예드	800000	samoyed.jpg		기타 상세 정보 등...
+		
+		4	비글외 2종		2022/08/02	2300000	guard1	6	2	4	1	1	비글		550000	bigle.png		기타 상세 정보 등...
+		4	비글외 2종		2022/08/02	2300000	guard1	7	1	4	3	3	퍼그		400000	pug.jpg			기타 상세 정보 등...
+		4	비글외 2종		2022/08/02	2300000	guard1	8	1	4	7	7	닥스훈트	800000	dachshund.jpg	기타 상세 정보 등...
+		
+		5	샤페이외 0종	2022/08/02	700000	guard1	9	1	5	6	6	샤페이		700000	shaipei.jpg		기타 상세 정보 등...
+		
+		6	샤페이외 0종	2022/08/02	700000	guard1	10	1	6	6	6	샤페이		700000	shaipei.jpg		기타 상세 정보 등...
+		*/
 		return orderList;
-		}//end method
+		
+		
+	}//end method
 	
 	/****************************************************************/
 	/*
@@ -190,13 +218,9 @@ public class OrderDao {
 		}
 		return rowCount;
 	}
-	/*
-	 * 주문생성
-	 */
-	
 	
 	/*
-	 * 주문전체(특정사용자)
+	 * 주문리스트(특정사용자)
 	 */
 	public ArrayList<Order> list(String sUserId) throws Exception{
 		ArrayList<Order> orderList=new ArrayList<Order>();
@@ -225,7 +249,7 @@ public class OrderDao {
 		return orderList;
 	}
 	/*
-	 * 주문1개보기(주문상세리스트)
+	 * 주문1개보기(주문상세)
 	 */
 	public Order detail(String sUserId,int o_no)throws Exception{
 		/*

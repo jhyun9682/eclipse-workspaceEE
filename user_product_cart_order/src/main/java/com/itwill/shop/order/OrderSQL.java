@@ -12,7 +12,7 @@ public class OrderSQL {
 			"insert into order_item(oi_no,oi_qty,o_no,p_no)  values(order_item_oi_no_seq.nextval,?,orders_o_no_seq.currval,?)";
 	
 	public static final String ORDER_O_NO_LIST=
-			"select o_no from orders where userid=? ";
+			"select o_no from orders where userid=?";
 	
 	public static final String ORDER_LIST_BY_USERID_O_NO=
 			"select * from orders o "

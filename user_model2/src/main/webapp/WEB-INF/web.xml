@@ -7,7 +7,7 @@
 	<filter>
 		<filter-name>login filter</filter-name>
 		<filter-class>com.itwill.user.filter.LoginCheckFilter</filter-class>
-		</filter>
+	</filter>
 	<filter>
 		<filter-name>encoding filter</filter-name>
 		<filter-class>com.itwill.summer.EncodingFilter</filter-class>

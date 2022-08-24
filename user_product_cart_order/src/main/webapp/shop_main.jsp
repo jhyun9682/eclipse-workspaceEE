@@ -8,9 +8,10 @@
 <link rel=stylesheet href="css/styles.css" type="text/css">
 <link rel=stylesheet href="css/menu.css" type="text/css"> 
 <link rel=stylesheet href="css/shop.css" type="text/css">
- 
 <style type="text/css" media="screen">
 </style>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/user.js"></script>
 </head>
 <body bgcolor=#FFFFFF text=#000000 leftmargin=0 topmargin=0
 	marginwidth=0 marginheight=0>

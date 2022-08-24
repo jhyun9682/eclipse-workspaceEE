@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	/*
+/*
 	  * 0.요청객체encoding설정
 	  * 1.파라메타받기
 	  * 2.GuestService객체생성

@@ -42,7 +42,7 @@ public class EncodingFilter implements Filter {
 		HttpServletRequest req=(HttpServletRequest)request;
 		System.out.println("요청시마다 호출 doFilter():"+req.getRequestURI());
 		
-		request.setCharacterEncoding("UTF-8");
+		
 		
 		if (request.getCharacterEncoding() == null) {
 			if (encoding != null) {

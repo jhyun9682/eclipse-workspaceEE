@@ -42,7 +42,6 @@
 		}
 		if(!isChecked){
 			alert('제품을선택해주세요');
-			
 			return;
 		}
 		document.cart_view_form.buyType.value='cart_select';
@@ -51,7 +50,6 @@
 		document.cart_view_form.submit();
 	}
 	function cart_item_select_count(){
-		
 		var cart_item_no_check_list = document.getElementsByName("cart_item_no_check");
 		var cart_item_check_selected_count = 0;
 		for (var i = 0; i < cart_item_no_check_list.length; i++) {
@@ -59,7 +57,6 @@
 				cart_item_check_selected_count++;
 			}
 		}
-		
 		document.getElementById('cart_item_select_count').innerHTML = cart_item_check_selected_count;
 	}
 </script>

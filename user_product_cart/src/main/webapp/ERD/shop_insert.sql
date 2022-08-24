@@ -40,3 +40,4 @@ insert into cart(cart_no,cart_qty,p_no,userid) values(cart_cart_no_seq.nextval,2
 
 
 
+

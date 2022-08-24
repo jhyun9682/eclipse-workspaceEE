@@ -1,3 +1,5 @@
+DROP TABLE order_item CASCADE CONSTRAINTS;
+DROP TABLE orders CASCADE CONSTRAINTS;
 DROP TABLE cart CASCADE CONSTRAINTS;
 DROP TABLE userinfo CASCADE CONSTRAINTS;
 DROP TABLE product CASCADE CONSTRAINTS;
@@ -36,6 +38,34 @@ DROP SEQUENCE cart_cart_no_SEQ;
 
 CREATE SEQUENCE cart_cart_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
 
+
+
+
+CREATE TABLE orders(
+		o_no                          		NUMBER(10)		 NULL ,
+		o_desc                        		VARCHAR2(100)		 NULL ,
+		o_date                        		DATE		 DEFAULT sysdate		 NULL ,
+		o_price                       		NUMBER(10)		 NULL ,
+		userId                        		VARCHAR2(100)		 NULL 
+);
+
+DROP SEQUENCE orders_o_no_SEQ;
+
+CREATE SEQUENCE orders_o_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
+
+
+
+
+CREATE TABLE order_item(
+		oi_no                         		NUMBER(10)		 NULL ,
+		oi_qty                        		NUMBER(10)		 NULL ,
+		o_no                          		NUMBER(10)		 NULL ,
+		p_no                          		NUMBER(10)		 NULL 
+);
+
+DROP SEQUENCE order_item_oi_no_SEQ;
+
+CREATE SEQUENCE order_item_oi_no_SEQ NOMAXVALUE NOCACHE NOORDER NOCYCLE;
 
 
 

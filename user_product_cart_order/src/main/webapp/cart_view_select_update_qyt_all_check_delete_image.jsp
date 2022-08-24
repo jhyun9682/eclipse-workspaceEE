@@ -97,16 +97,20 @@ ArrayList<CartItem> cartList = cartService.getCartList(sUserId);
 			document.cart_view_form.innerHTML +="<input type='hidden' name='buyType'>";
 			var tot_order_price=0;
 			for (var i = 0; i < cart_item_no_check_list.length; i++) {
-				if (cart_item_no_check_list.item(i).checked === true) {
-					document.cart_view_form.innerHTML += "<input type='hidden' name='cart_item_no' value='"+ cart_item_no_check_list.item(i).value + "'>";
-					var updateFormId='cart_update_form_'+ cart_item_no_check_list.item(i).value;
+				if (cart_item_no_check_list[i].checked === true) {
+					//form 변경
+					document.cart_view_form.innerHTML += "<input type='hidden' name='cart_item_no' value='"+ cart_item_no_check_list[i].value + "'>";
+					
+					var updateFormId='cart_update_form_'+ cart_item_no_check_list[i].value;
 					var cart_qty=document.getElementById(updateFormId).cart_qty.value;
 					var cart_product_unit_price=document.getElementById(updateFormId).cart_product_unit_price.value;
 					tot_order_price+=cart_qty*cart_product_unit_price;
+					
+					//주문수량보여주기
 					cart_item_check_selected_count++;
 				}
 			}
-			document.getElementById('cart_item_select_count').innerHTML = cart_item_check_selected_count;
+			document.getElementById('cart_item_select_count').innerHTML = cart_item_check_selected_count ;
 			document.getElementById('tot_order_price').innerHTML = tot_order_price.toLocaleString();
 			
 	}
@@ -200,8 +204,7 @@ ArrayList<CartItem> cartList = cartService.getCartList(sUserId);
 										</td>
 
 										<td width=112 height=26 align=center bgcolor="ffffff" class=t1>
-											<form action="cart_update_action.jsp" method="post"
-												id="cart_update_form_<%=cart.getCart_no()%>">
+											<form  method="post"  id="cart_update_form_<%=cart.getCart_no()%>">
 												<input type="hidden" name="cart_no"
 													value="<%=cart.getCart_no()%>"> <input
 													type="button" value="-"

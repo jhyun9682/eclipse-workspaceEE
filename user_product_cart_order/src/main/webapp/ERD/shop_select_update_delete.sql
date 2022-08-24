@@ -39,16 +39,28 @@ delete from cart where userid='guard1';
 /****************주문********************/
 --로그인한멤버(guard1)님의 주문목록
 select * from orders where userid='guard1';
---로그인한멤버(guard1)님의 주문(orders)목록(orderitem,product)
+--로그인한멤버(guard1)님의 주문(orders)전체목록(orderitem,product)
 select * from 
     orders o 
     join order_item oi on o.o_no=oi.o_no 
     join product p on oi.p_no=p.p_no 
 where o.userid='guard1';
+
+
+--로그인한멤버(guard1)님의 주문번호[2,4,5,6]
+select o_no from orders where userid='guard1';
+--로그인한멤버(guard1)님의 주문(orders)한개(orderitem,product)의상세
+select * from 
+    orders o 
+    join order_item oi on o.o_no=oi.o_no 
+    join product p on oi.p_no=p.p_no 
+where o.userid='guard1' and o.o_no=2;
+
 --로그인한멤버 주문한개삭제( on delete cascade)
 delete from orders where o_no=1;
 --로그인한멤버 주문전체삭제( on delete cascade)
 delete from orders where userid='guard1';
+
 
 
 

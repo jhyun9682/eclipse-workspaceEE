@@ -1,7 +1,6 @@
 <%@page import="java.util.List"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="com.itwill.shop.cart.CartItem"%>
-<%@page import="java.util.ArrayList"%>
 <%@page import="com.itwill.shop.cart.CartService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>

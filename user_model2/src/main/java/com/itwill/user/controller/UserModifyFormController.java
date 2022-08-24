@@ -15,12 +15,9 @@ public class UserModifyFormController implements Controller{
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
 		String forwardPath="";
-		/****************login_check*******************/
 		String sUserId=(String)request.getSession().getAttribute("sUserId");
-		if(sUserId==null){
-			forwardPath="redirect:user_main.do";
-			return forwardPath;
-		}
+		/****************login_check*******************/
+		
 		/*********************************************/
 		/*
 		1. UserService객체생성

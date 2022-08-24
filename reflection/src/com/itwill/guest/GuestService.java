@@ -1,33 +1,17 @@
 package com.itwill.guest;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
 
-public class GuestService {
-	private GuestDao guestDao;
-	public GuestService() {
-		
-	}
-	public List<Guest> selectAll() throws Exception{
-		return guestDao.selectAll();
-	}
+public interface GuestService {
 
-	public Guest selectByNo(int no) throws Exception{
-		return guestDao.selectByNo(no);
-	}
+	List<Guest> selectAll() throws Exception;
 
-	public int insertGuest(Guest guest)throws Exception {
-		return guestDao.insertGuest(guest);
-	}
+	Guest selectByNo(int no) throws Exception;
 
-	public int updateGuest(Guest guest) throws Exception{
-		return guestDao.updateGuest(guest);
-	}
+	int insertGuest(Guest guest) throws Exception;
 
-	public int deleteGuest(int no)throws Exception {
-		return guestDao.deleteGuest(no);
-	}
+	int updateGuest(Guest guest) throws Exception;
+
+	int deleteGuest(int no) throws Exception;
+
 }

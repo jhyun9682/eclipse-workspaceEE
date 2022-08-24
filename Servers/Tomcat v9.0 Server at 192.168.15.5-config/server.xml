@@ -103,9 +103,10 @@
 				<Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
 
-				<Context docBase="servletSite" path="/servletSite" reloadable="true" source="org.eclipse.jst.jee.server:servletSite"/>
-				<Context docBase="htmlSite" path="/htmlSite" reloadable="true" source="org.eclipse.jst.jee.server:htmlSite"/>
-			<Context docBase="addressSite" path="/addressSite" reloadable="true" source="org.eclipse.jst.jee.server:addressSite"/><Context docBase="jspSite" path="/jspSite" reloadable="true" source="org.eclipse.jst.jee.server:jspSite"/><Context docBase="addressJspSite" path="/addressJspSite" reloadable="true" source="org.eclipse.jst.jee.server:addressJspSite"/><Context docBase="javascriptSite" path="/javascriptSite" reloadable="true" source="org.eclipse.jst.jee.server:javascriptSite"/><Context docBase="guest_model1" path="/guest_model1" reloadable="true" source="org.eclipse.jst.jee.server:guest_model1"/><Context docBase="user_model1" path="/user_model1" reloadable="true" source="org.eclipse.jst.jee.server:user_model1"/></Host>
+
+
+				
+			<Context docBase="guest_model2_el_jstl_practice" path="/guest_model2_el_jstl_practice" reloadable="true" source="org.eclipse.jst.jee.server:guest_model2_el_jstl_practice"/><Context docBase="user_model2_el_jstl_practice" path="/user_model2_el_jstl_practice" reloadable="true" source="org.eclipse.jst.jee.server:user_model2_el_jstl_practice"/><Context docBase="el_customtag_jstl" path="/el_customtag_jstl" reloadable="true" source="org.eclipse.jst.jee.server:el_customtag_jstl"/><Context docBase="guest_model2_practice" path="/guest_model2_practice" reloadable="true" source="org.eclipse.jst.jee.server:guest_model2_practice"/><Context docBase="guest_model2" path="/guest_model2" reloadable="true" source="org.eclipse.jst.jee.server:guest_model2"/><Context docBase="user_model2" path="/user_model2" reloadable="true" source="org.eclipse.jst.jee.server:user_model2"/></Host>
 		</Engine>
 	</Service>
 </Server>

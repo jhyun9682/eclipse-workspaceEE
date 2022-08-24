@@ -18,24 +18,38 @@ public class MyBatisFlowMain {
 		/*
 		 * 0. mybatis-config.xml --> InputStream
 		 */
+		InputStream myBatisConfigInputStream = Resources.getResourceAsStream("mybatis-config.xml");
 		/*
 		 * 1. SqlSessionFactoryBuilder
 		 */
+		SqlSessionFactoryBuilder sqlSessionFactoryBuilder=new SqlSessionFactoryBuilder();
 		/*
 		 * 2. SqlSessionFactory
 		 */
+		SqlSessionFactory sqlSessionFactory=
+				sqlSessionFactoryBuilder.build(myBatisConfigInputStream);
 		/*
-		 * 3. SqlSession open
+		 * 3. SqlSession open (Connection)
 		 */
+		SqlSession sqlSession=sqlSessionFactory.openSession(true);
 		/*
 		 * autocommit true
 		 */
+		System.out.println("#### SqlSession객체:"+sqlSession);
 		/*
 		 * 4. SqlSession사용(CRUD)
 		 */
+		List<Student> studentList=sqlSession.selectList(
+				"com.mybatis3.dao.mapper.StudentBasicMapper.findAllStudents");
+		System.out.println("#### studentList:"+studentList);
+		
+		Student student=sqlSession.selectOne(
+				"com.mybatis3.dao.mapper.StudentBasicMapper.findStudentById",new Integer(1));
+		System.out.println("#### student:"+student);
 		/*
 		 * 5. SqlSession close
 		 */
+		sqlSession.close();
 		
 	}
 }

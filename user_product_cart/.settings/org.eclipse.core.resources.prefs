@@ -1,3 +1,4 @@
 eclipse.preferences.version=1
+encoding//src/main/webapp/ERD/shop.ddl=MS949
 encoding//src/main/webapp/ERD/shop_insert.sql=UTF-8
 encoding//src/main/webapp/ERD/shop_select_update_delete.sql=UTF-8

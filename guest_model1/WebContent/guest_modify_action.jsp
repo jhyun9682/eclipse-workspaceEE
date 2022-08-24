@@ -2,7 +2,7 @@
 <%@page import="com.itwill.guest.GuestService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%    
+<%
 /*
 	GET방식이면 guest_main.jsp redirection
 	
@@ -24,8 +24,8 @@
 	String guest_title=request.getParameter("guest_title");
 	String guest_content=request.getParameter("guest_content");
 	Guest guest=new Guest(Integer.parseInt(guest_noStr),guest_name,null,
-							guest_email,guest_homepage,
-							guest_title,guest_content);
+					guest_email,guest_homepage,
+					guest_title,guest_content);
 	GuestService guestService=new GuestService();
 	int rowCount=guestService.updateGuest(guest);
 	response.sendRedirect("guest_view.jsp?guest_no="+guest_noStr);

@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	/*
+/*
 	GET방식이면 guest_main.jsp redirection
 	
 	0.요청객체encoding설정
@@ -18,15 +18,14 @@
 		return;
 	}
 	Guest guest=new Guest(0,
-						  request.getParameter("guest_name"),
-						  null,
-						  request.getParameter("guest_email"),
-						  request.getParameter("guest_homepage"),
-						  request.getParameter("guest_title"),
-						  request.getParameter("guest_content")
-						  );
+				  request.getParameter("guest_name"),
+				  null,
+				  request.getParameter("guest_email"),
+				  request.getParameter("guest_homepage"),
+				  request.getParameter("guest_title"),
+				  request.getParameter("guest_content")
+				  );
 	GuestService guestService=new GuestService();
 	int rowCount=guestService.insertGuest(guest);
 	response.sendRedirect("guest_list.jsp");
-
 %>

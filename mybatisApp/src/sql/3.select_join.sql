@@ -45,7 +45,12 @@ select stud_id, name, email,phone, a.addr_id, street, city, state, zip, country
  
 --findStudentByIdWithCourses 
 /*
-students + courses  join
+students + course_enrollment join
+*/   
+select * from students s join course_enrollment ce on s.stud_id=ce.stud_id where s.stud_id=1;
+
+/*
+students + course_enrollment + courses  join
 */     
 select s.*,c.* 
 		from students s 
@@ -55,7 +60,7 @@ select s.*,c.*
 		on ce.course_id=c.course_id where s.stud_id=1;
 
 /*
-students + courses join
+students + course_enrollment + courses  join
 */
 select  s.stud_id,s.name as student_name ,s.email,s.phone,s.dob ,
         c.course_id,c.name as course_name ,c.description,c.start_date,c.end_date

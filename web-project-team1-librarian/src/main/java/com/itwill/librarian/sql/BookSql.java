@@ -40,7 +40,8 @@ public class BookSql {
 	 * @param String 검색어
 	 * @return Book
 	 */
-	public final static String BOOK_SEARCH_ALL = "select * from book where BOOK_TITLE like ? or BOOK_AUTHOR like ? or BOOK_PUBLISHER like ?"; 
+	public final static String BOOK_SEARCH_ALL = 
+			"select * from book where BOOK_TITLE like ? or BOOK_AUTHOR like ? or BOOK_PUBLISHER like ?"; 
 	
 	public final static String BOOK_SEARCH_ALL_LIST = "select * from (select rownum idx, s.* from (select * from book where BOOK_TITLE like ? or BOOK_AUTHOR like ? or BOOK_PUBLISHER like ? order by BOOK_TITLE) s) where idx >= ? and idx <= ?"; 
 

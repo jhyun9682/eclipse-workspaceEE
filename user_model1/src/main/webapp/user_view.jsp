@@ -1,19 +1,11 @@
-<%@page import="com.itwill.user.User"%>
-<%@page import="com.itwill.user.UserService"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="user_login_check.jspf" %>
-<%
-	/*
-	1. UserService객체생성
-	2. 세션의 sUserId를 사용해서 UserService.findUser()메쏘드호출
-	3. 반환된 User객체출력
-	*/
 
-	UserService userService=new UserService();
-	User loginUser=userService.findUser(sUserId);
 
-%>
+
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -44,14 +36,30 @@
 		<div id="header">
 			<!-- include_common_top.jsp start-->
 			
-<jsp:include page="include_common_top.jsp"/>
+
+<h1>
+	<a href="">회원관리 MODEL1</a>
+</h1>
+
 			<!-- include_common_top.jsp end-->
 		</div>
 		<!-- header end -->
 		<!-- navigation start-->
 		<div id="navigation">
 			<!-- include_common_left.jsp start-->
-			<jsp:include page="include_common_left.jsp"/>
+				
+    		
+<p>
+	<strong>메 뉴</strong>
+</p>
+<ul>
+	
+		<li><a href="">guard1 님</a></li>
+		<li><a href="user_view.jsp">내정보</a></li>
+		<li><a href="user_logout_action.jsp">로그아웃</a></li>
+	
+</ul>
+
 			<!-- include_common_left.jsp end-->
 		</div>
 		<!-- navigation end-->
@@ -79,20 +87,20 @@
 										<td width=100 align=center bgcolor="E6ECDE" height="22">사용자
 											아이디</td>
 										<td width=490 bgcolor="ffffff" style="padding-left: 10">
-											<%=loginUser.getUserId() %>
+											guard1
 										</td>
 									</tr>
 									<tr>
 										<td width=100 align=center bgcolor="E6ECDE" height="22">이름</td>
 										<td width=490 bgcolor="ffffff" style="padding-left: 10">
-											<%=loginUser.getName() %>
+											김경수
 										</td>
 									</tr>
 									<tr>
 										<td width=100 align=center bgcolor="E6ECDE" height="22">이메일
 											주소</td>
 										<td width=490 bgcolor="ffffff" style="padding-left: 10">
-											<%=loginUser.getEmail()%>
+											guard111@korea.com
 										</td>
 									</tr>
 								</table>
@@ -115,7 +123,10 @@
 		<!--wrapper end-->
 		<div id="footer">
 			<!-- include_common_bottom.jsp start-->
-			<jsp:include page="include_common_bottom.jsp"/>
+			
+	<p align="center">Copyright (&copy;) By Kimkyoungho.[김경호] All
+		rights reserved.</p>
+
 			<!-- include_common_bottom.jsp end-->
 		</div>
 	</div>

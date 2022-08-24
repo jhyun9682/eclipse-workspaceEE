@@ -1,52 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mybatis3.dao.mapper.StudentMapper">
-	<!-- ################### resultMap정의 ########################## -->
-	<!-- studentResultMap -->
-	<!-- studentWithAddressResultMap -->
-	<!-- studentWithCoursesResultMap -->
+	<!-- ############################## resultMap정의 ############################# -->
 	
-	<!-- @@@@@@@@@@@@@@@@@@@@@@@ select[students + addresses JOIN] @@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
-	<!-- @@@@@@@@@@@@@@@@@@@@@@@ select[students + courses JOIN] @@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
-	
-	<!-- @@@@@@@@@@@@@@@@@@@@@@@ select @@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
-	<!--resultMap  -->
-	<!--resultType Dto  -->
-	<!--resultType Wrappper(String) -->
-	<!--resultType Map -->
-	
-	
-	
-	
-	
-	<!-- @@@@@@@@@ parameterType[java.util.Map,java.util.HashMap,map,hashmap] @@@@@ -->
+	<!-- ########################################################################### -->
 	<!-- 
-		parameterType
-		  1. Dto
-		  2. Wrapper(String),Date
-		  3. Map
+	/**************************************************
+	 	SELECT 
+	**************************************************/
+	/*
+	 * select sql의결과타입이 DTO[DTO List] 객체인경우
+	 * resultType :  Dto
+	 */
+	 -->
+	
+	<!-- 
+	/*
+	 * select sql의결과타입이 DTO[DTO List] 객체인경우
+	 * resultMap :  DTO
+	 */
+	 -->
+	 
+	<!-- 
+	/**************************************************
+	 	SELECT[student + address JOIN]( 1 : 1 )
+	**************************************************/
+	/*
+	 * select sql의결과타입이 DTO,VO,Domain객체인경우
+	 * resultMap : studentWithAddressResultMap
+	 */
+	 -->
+	 <!-- 
+	/**************************************************
+	 SELECT[students + courses[course_enrollment] JOIN( 1 : N )
+	**************************************************/
+	/*
+	 * select sql의결과타입이 DTO,VO,Domain객체인경우
+	 * resultMap : studentWithCoursesResultMap
+	 */
+	 -->
+	 
+	 
+	 
+	<!-- 
+	/**************************************************
+	INSERT
+	***************************************************/
+		parameterType: DTO,VO,Domain
+	 -->
+	
+	<!-- 
+	/**************************************************
+	UPDATE
+	***************************************************/
+		parameterType: DTO,VO,Domain
 	 -->
 	
 	
+	<!-- 
+	/**************************************************
+	DELETE
+	***************************************************/
+		parameterType: java.lang.Integer,java.lang.String
+	-->
 	
 	
-	<!--@@@@@@@@@@@@@@@@@@@@@@@ insert @@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
 	
-	<!--@@@@@@@@@@@@@@@@@@@@@@@ update @@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
 	
-	<!--@@@@@@@@@@@@@@@@@@@@@@@ delete @@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
+	
+	 
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-

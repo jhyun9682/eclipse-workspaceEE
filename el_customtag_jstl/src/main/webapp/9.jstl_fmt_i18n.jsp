@@ -10,8 +10,10 @@
  	*/
  %> 
 <%-- 1.Locale객체설정(JSTL)--%>
-<%--<fmt:setLocale value="${pageContext.request.locale.language}"/>--%>
-<fmt:setLocale value="${param.lang}" />
+<%--
+<fmt:setLocale value="${pageContext.request.locale.language}"/>
+ --%>
+<fmt:setLocale value="${param.lang}"/> 
 <%-- 2.ResourceBundle 의 properties파일지정(JSTL) 페이지전역  --%>
 <fmt:setBundle basename="com/itwill/i18n/guest" />
 <!DOCTYPE html>

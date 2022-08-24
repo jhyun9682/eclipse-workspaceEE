@@ -1,38 +1,60 @@
 package com.mybatis3.dao;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
-import com.mybatis3.domain.Student;
-
 public class StudentDaoMain {
 
 	public static void main(String[] args) {
 		StudentDao studentDao = new StudentDao();
+		/**************************************************
+	 	 SELECT 
+		 **************************************************/
+		/*
+		  select sql의결과타입이 DTO[DTO List] 객체인경우
+		  resultType :  Dto
+		 */
 		System.out.println("---------findStudentById-----------------------------");
 		System.out.println("---------findAllStudents-----------------------------");
-		System.out.println("---------findStudentNameById-------------------------");
-		System.out.println("---------findStudentNameList-------------------------");
-		System.out.println("---------findStudentByIdMap--------------------------");
-		System.out.println("---------findAllStudentsMapList----------------------");
+		/*
+		  select sql의결과타입이 DTO[DTO List] 객체인경우
+		  resultMap :  DTO
+		 */
+		
 		System.out.println("---------findStudentByIdResultMap--------------------");
 		System.out.println("---------findAllStudentsResultMap--------------------");
+		
+		/**************************************************
+	 	 SELECT[student + address JOIN]( 1 : 1 )
+		 **************************************************/
+		/*
+		 * select sql의결과타입이 DTO,VO,Domain객체인경우
+		 * resultMap : studentWithAddressResultMap
+		 */
+		System.out.println("---------findStudentByIdWithAddress------------------");
+		System.out.println("---------findStudentByIdWithCourses------------------");
+		/**************************************************
+		INSERT
+		***************************************************/
+		/*
+		parameterType: DTO,VO,Domain
+		*/
 		System.out.println("---------insertStudent(Dto)--------------------------");
 		System.out.println("---------insertStudentBySequence1--------------------");
 		System.out.println("---------insertStudentBySequence2--------------------");
+		/**************************************************
+		 UPDATE
+		 ***************************************************/
+		/*
+		 parameterType: DTO,VO,Domain
+		 */
 		System.out.println("---------updateStudentById---------------------------");
+		/**************************************************
+		 DELETE
+		 ***************************************************/
+		/*
+		parameterType: java.lang.Integer,java.lang.String
+		*/
 		System.out.println("---------deleteStudentById---------------------------");
-		System.out.println("---------deleteStudentByName-------------------------");
-		System.out.println("---------deleteStudentByNameLike---------------------");
-		System.out.println("---------findStudentByIdWithAddress------------------");
-		System.out.println("---------findStudentByIdWithCourses------------------");
-		System.out.println("---------findAllOrderedStudents------------------");
-		System.out.println("---------findStudentByIdRangeParamMap(parameter Map)-");
-		System.out.println("---------updateStudentParamMap(parameter Map)--------");
-		System.out.println("---------findStudentsThreeParamMap(parameter Map)----");
-		System.out.println("---------findStudentByIdNestedfindAddressById-----------");
-		System.out.println("---------updateStudentDynamicSql---------");
-		System.out.println("---------findStudentCount----------------");
+		
+		
+		
 	}
 }
