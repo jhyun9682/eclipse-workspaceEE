@@ -24,8 +24,8 @@ import javax.servlet.http.HttpServletResponse;
 /*
  * web.xml대신에 annotation[@] 사용
  */
-//@WebServlet(name = "annotation_mapping",urlPatterns = "/annotation_mapping.do")
-@WebServlet("/annotation_mapping.do")
+@WebServlet(name = "annotation_mapping",urlPatterns = {"/annotation_mapping.do"})
+//@WebServlet("/annotation_mapping.do")
 public class AnnotationMappingServlet extends HttpServlet {
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
